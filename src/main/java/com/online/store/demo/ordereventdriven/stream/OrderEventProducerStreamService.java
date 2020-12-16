@@ -16,9 +16,12 @@ public class OrderEventProducerStreamService {
 		private OrderEventProducerStream eventStream;
 
 		public Boolean produceEvent(PurchaseOrder msg) {
+			
 			System.out.println("Producing purchase order events=> id: "+ msg.getId() +" Actual message: "+ msg.getData());
+			
 			msg.setBytePayload(msg.getData().getBytes());
 			MessageChannel messageChannel = eventStream.producer();
+			
 			return messageChannel.send(MessageBuilder.withPayload(msg)
 					.setHeader(MessageHeaders.CONTENT_TYPE, MimeTypeUtils.APPLICATION_JSON).build());
 		}

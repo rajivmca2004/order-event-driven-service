@@ -21,10 +21,10 @@ public class OrderController {
 
 
 	@Autowired
-	private OrderEventProducerStreamService eventStreamService;
+	private OrderEventProducerStreamService orderEventProducerStreamService;
 
 	@PostMapping("/produce")
 	public Boolean createOrders(@RequestBody final PurchaseOrder purchaseOrder) throws URISyntaxException {
-		return eventStreamService.produceEvent(purchaseOrder);
+		return orderEventProducerStreamService.produceEvent(purchaseOrder);
 	}
 }
