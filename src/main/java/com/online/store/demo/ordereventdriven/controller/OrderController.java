@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.online.store.demo.ordereventdriven.stream.Message;
+import com.online.store.demo.ordereventdriven.model.PurchaseOrder;
 import com.online.store.demo.ordereventdriven.stream.OrderEventStreamInputService;
 
 /**
@@ -24,7 +24,7 @@ public class OrderController {
 	private OrderEventStreamInputService eventStreamService;
 
 	@PostMapping("/produce")
-	public Boolean createOrders(@RequestBody final Message message) throws URISyntaxException {
-		return eventStreamService.produceEvent(message);
+	public Boolean createOrders(@RequestBody final PurchaseOrder purchaseOrder) throws URISyntaxException {
+		return eventStreamService.produceEvent(purchaseOrder);
 	}
 }

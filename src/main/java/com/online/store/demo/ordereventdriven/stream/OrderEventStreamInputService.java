@@ -7,14 +7,16 @@ import org.springframework.messaging.MessageHeaders;
 import org.springframework.stereotype.Service;
 import org.springframework.util.MimeTypeUtils;
 
+import com.online.store.demo.ordereventdriven.model.PurchaseOrder;
+
 @Service
 public class OrderEventStreamInputService {
 	
 		@Autowired
 		private OrderEventStream eventStream;
 
-		public Boolean produceEvent(Message msg) {
-			System.out.println("Producing order events=> id: "+ msg.getId() +" Actual message: "+ msg.getData());
+		public Boolean produceEvent(PurchaseOrder msg) {
+			System.out.println("Producing purchase order events=> id: "+ msg.getId() +" Actual message: "+ msg.getData());
 			msg.setBytePayload(msg.getData().getBytes());
 			MessageChannel messageChannel = eventStream.producer();
 			return messageChannel.send(MessageBuilder.withPayload(msg)

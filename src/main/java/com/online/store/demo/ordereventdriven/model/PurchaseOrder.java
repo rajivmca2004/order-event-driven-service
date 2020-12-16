@@ -1,82 +1,31 @@
 package com.online.store.demo.ordereventdriven.model;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
-
-/**
- * @author rasrivastava
- *
- */
-
 public class PurchaseOrder {
-	
-    private Long id;
+	private Integer id;
+	private String data;
+	private byte[] bytePayload;
 
-    @NotBlank
-    @Size(min = 0, max = 30)
-    private String cname;
-    
-    @NotBlank
-    @Size(min = 0, max = 40)
-    private String email;
-    
-    private String pname;
-    
-    private Double price;
-    
-    public PurchaseOrder() {
-		super();
-	}
-
-	public PurchaseOrder(String cname, String email, String pname, Double price) {
-		this.cname = cname;
-		this.email = email;
-		this.pname = pname;
-		this.price = price;
-	}
-
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
-	public String getCname() {
-		return cname;
+	public String getData() {
+		return data;
 	}
 
-	public void setCname(String cname) {
-		this.cname = cname;
+	public void setData(String data) {
+		this.data = data;
 	}
 
-	public String getEmail() {
-		return email;
+	public byte[] getBytePayload() {
+		return bytePayload;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getPname() {
-		return pname;
-	}
-
-	public void setPname(String pname) {
-		this.pname = pname;
-	}
-
-	public Double getPrice() {
-		return price;
-	}
-
-	public void setPrice(Double price) {
-		this.price = price;
-	}
-	@Override
-	public String toString() {
-		return "PurchaseOrder [id=" + id + ", cname=" + cname + ", email=" + email + ", pname=" + pname + ", price="
-				+ price + "]";
+	public void setBytePayload(byte[] bytePayload) {
+		this.bytePayload = bytePayload;
 	}
 }
