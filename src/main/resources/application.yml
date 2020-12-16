@@ -8,9 +8,6 @@ spring:
         binder:
           brokers: localhost:9092
       bindings:
-        event-consumer:
-          destination: order_topic
-          contentType: application/json
         event-producer:
           destination: order_topic
           contentType: application/json
