@@ -10,10 +10,10 @@ import org.springframework.util.MimeTypeUtils;
 import com.online.store.demo.ordereventdriven.model.PurchaseOrder;
 
 @Service
-public class OrderEventStreamInputService {
+public class OrderEventProducerStreamService {
 	
 		@Autowired
-		private OrderEventStream eventStream;
+		private OrderEventProducerStream eventStream;
 
 		public Boolean produceEvent(PurchaseOrder msg) {
 			System.out.println("Producing purchase order events=> id: "+ msg.getId() +" Actual message: "+ msg.getData());
