@@ -15,14 +15,17 @@ public class OrderEventProducerStreamService {
 		@Autowired
 		private OrderEventProducerStream eventStream;
 
-		public Boolean produceEvent(PurchaseOrder msg) {
+		public Boolean produceEvent(PurchaseOrder purchaseOrder) {
 			
-			System.out.println("Producing purchase order events=> id: "+ msg.getId() +" Actual message: "+ msg.getData());
+			System.out.println("Producing purchase order events=> id: "+ purchaseOrder.getId() +" Actual message: "+ purchaseOrder.getData());
 			
-			msg.setBytePayload(msg.getData().getBytes());
+			purchaseOrder.setBytePayload(purchaseOrder.getData().getBytes());
+			
+			//Set Message channel or topic "order_topic"
 			MessageChannel messageChannel = eventStream.producer();
 			
-			return messageChannel.send(MessageBuilder.withPayload(msg)
+			//Send payload JSON message to Kafka message broker
+			return messageChannel.send(MessageBuilder.withPayload(purchaseOrder)
 					.setHeader(MessageHeaders.CONTENT_TYPE, MimeTypeUtils.APPLICATION_JSON).build());
 		}
 }
